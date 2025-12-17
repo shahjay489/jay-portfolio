@@ -183,6 +183,20 @@
     createParticles();
   }
 
+  const scrollTopButton = document.querySelector(".scroll-top");
+  const updateScrollTopVisibility = () => {
+    if (!scrollTopButton) return;
+    const shouldShow = window.scrollY > window.innerHeight * 0.5;
+    scrollTopButton.classList.toggle("visible", shouldShow);
+  };
+
+  window.addEventListener("scroll", updateScrollTopVisibility);
+  updateScrollTopVisibility();
+
+  scrollTopButton?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
   const tiltCards = document.querySelectorAll(".tilt-card");
   tiltCards.forEach((card) => {
     card.addEventListener("mousemove", (event) => {
